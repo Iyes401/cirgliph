@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#translator-container {
+    text-align: center;
+}
+
+#input-text {
+    width: 300px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+#translate-button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#translation-output {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
