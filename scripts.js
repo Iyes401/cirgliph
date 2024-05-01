@@ -1,9 +1,3 @@
-I apologize for the confusion. Let’s correct the translation logic. The input “hello 123 hello” should indeed translate to “●●○● ○○●○ ○○●● ○○●● ●●○○ ▫ ! ●○○○ ○●○○ ○○●○ ▫ ? ●●○● ○○●○ ○○●● ○○●● ●●○○” with the “!” indicating the start of number mode and “?” indicating the switch back to text mode.
-
-Here’s the corrected JavaScript function:
-
-JavaScript
-
 // Mapping of characters to shapes for text and numbers
 const charToShape = {
     'A': '○●○○', 'N': '●○●○',
@@ -24,7 +18,7 @@ const charToShape = {
     '2': '○●○○', '7': '●●●●',
     '3': '○○●○', '8': '●●○○',
     '4': '○○○●', '9': '●●●○',
-    ' ': '▫'
+    ' ': '▫', '!': '!', '?': '?'
 };
 
 // Function to translate text to shapes with mode switching
@@ -35,17 +29,22 @@ function translateToShapes(text) {
     for (let i = 0; i < text.length; i++) {
         let char = text[i];
 
+        // Check for mode switch
         if (char === '!') {
             isNumberMode = true;
-            continue; // Skip the symbol and switch to number mode
         } else if (char === '?') {
             isNumberMode = false;
-            continue; // Skip the symbol and switch to text mode
+        } else {
+            // Translate character to shape
+            let shape = isNumberMode ? charToShape[char] : charToShape[char.toUpperCase()];
+            translatedText += shape ? shape + ' ' : '';
         }
-
-        let shape = isNumberMode ? charToShape[char] : charToShape[char.toUpperCase()];
-        translatedText += shape ? shape + ' ' : ''; // Add space after each shape
     }
 
     return translatedText.trim(); // Remove trailing space
 }
+
+// Example usage:
+let inputText = "hello 123 hello";
+let outputText = translateToShapes(inputText + ' ! ?');
+console.log(outputText);
